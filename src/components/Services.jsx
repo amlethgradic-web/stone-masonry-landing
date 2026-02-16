@@ -8,16 +8,16 @@ const services = [
     features: ["Porcelain", "Ceramic", "Natural Stone"]
   },
   { 
-    icon: Landmark, 
-    title: "Retaining Walls", 
-    description: "Engineered stone retaining walls that combine structural integrity with natural beauty.",
-    features: ["Structural Engineering", "Natural Stone", "Custom Design"]
+    icon: Flame, 
+    title: "Custom Stone or Tile projects", 
+    description: "Your own unique sink or custom window sills, everything is possible!.",
+    features: ["Tile", "Natural Stone", "Custom Design"]
   },
   { 
-    icon: Flame, 
-    title: "Fireplaces & Hearths", 
-    description: "Custom stone fireplaces that become the centerpiece of your home.",
-    features: ["Custom Design", "Heat Resistant", "Premium Materials"]
+    icon: Landmark, 
+    title: "Residential Concrete Works", 
+    description: "From pouring concrete floors to custom countertops, we deliver durable and beautiful concrete solutions.",
+    features: ["Floor leveling", "Leveling Walls", "Premium Materials"]
   },
   { 
     icon: TreePine, 
