@@ -93,13 +93,13 @@ const Contact = () => {
                 className="w-full bg-primary/30 border-2 border-secondary/40 rounded-lg px-4 py-3 text-light/70 focus:outline-none focus:border-secondary transition-all"
               >
                 <option value="">Select Service</option>
-                <option value="retaining-walls">Retaining Walls</option>
-                <option value="fireplaces">Fireplaces & Hearths</option>
-                <option value="stone-veneer">Stone Veneer</option>
+                <option value="retaining-walls">Residential Concrete Works</option>
+                <option value="fireplaces">Tiling</option>
+                <option value="stone-veneer">Custom Stone or Tile Projects</option>
                 <option value="patios">Patios & Walkways</option>
                 <option value="foundation">Foundation Work</option>
                 <option value="restoration">Restoration</option>
-                <option value="tiling">Tiling</option>
+        
               </select>
               <textarea 
                 placeholder="Tell us about your project..." 

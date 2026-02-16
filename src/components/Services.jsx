@@ -9,7 +9,7 @@ const services = [
   },
   { 
     icon: Flame, 
-    title: "Custom Stone or Tile projects", 
+    title: "Custom Stone or Tile Projects", 
     description: "Your own unique sink or custom window sills, everything is possible!.",
     features: ["Tile", "Natural Stone", "Custom Design"]
   },
