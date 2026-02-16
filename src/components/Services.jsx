@@ -1,41 +1,41 @@
-import { Landmark, Home, Flame, TreePine, Blocks, Wrench, ArrowRight } from "lucide-react";
+import { Landmark, Home, Flame, TreePine, Blocks, Wrench } from "lucide-react";
 
 const services = [
   { 
     icon: Home, 
-    title: "Tiling", 
-    description: "Professional tiling installation with porcelain, ceramic, and natural stone options for any space.",
-    features: ["Porcelain", "Ceramic", "Natural Stone"]
+    title: "Plytelių klijavimas", 
+    description: "Profesionalus plytelių klijavimas su porceliano, keramikos ir natūralaus akmens variantais, bet kuriai erdvei.",
+    features: ["Porcelianas", "Keramika", "Natūralus akmuo"]
   },
   { 
     icon: Flame, 
-    title: "Custom Stone or Tile Projects", 
-    description: "Your own unique sink or custom window sills, everything is possible!.",
-    features: ["Tile", "Natural Stone", "Custom Design"]
+    title: "Individualūs akmens ar plytelių projektai", 
+    description: "Jūsų unikalios kriauklės ar individualios palangės - viskas įmanoma!",
+    features: ["Plytelės", "Natūralus akmuo", "Individualus dizainas"]
   },
   { 
     icon: Landmark, 
-    title: "Residential Concrete Works", 
-    description: "From pouring concrete floors to custom countertops, we deliver durable and beautiful concrete solutions.",
-    features: ["Floor leveling", "Leveling Walls", "Premium Materials"]
+    title: "Gyvenamųjų namų betonavimo darbai", 
+    description: "Nuo betonino grindų liejimo iki stalviršių - Tvaru!s sprendimai.",
+    features: ["Grindų lyginimas", "Sienų lyginimas", "Aukščiausios klasės medžiagos"]
   },
   { 
     icon: TreePine, 
-    title: "Patios & Walkways", 
-    description: "Beautiful flagstone and bluestone outdoor living spaces built to endure.",
-    features: ["Slip Resistant", "Weather Durable", "Easy Maintenance"]
+    title: "Terasų ir takelių įrengimas", 
+    description: "Gražios plokštakmenes ir mėlynojo akmens lauko erdvės, sukurtos ištvermei.",
+    features: ["Neslidi danga", "Oro sąlygų atsparus", "Lengva priežiūra"]
   },
   { 
     icon: Blocks, 
-    title: "Foundation Work", 
-    description: "Solid stone foundations and structural masonry for lasting stability.",
-    features: ["Load Bearing", "Certified Work", "Lifetime Durable"]
+    title: "Pamatų darbai", 
+    description: "Tvirti akmens pamatai ir konstrukcinis mūras ilgalaikiam stabilumui.",
+    features: ["Apkrovų pernešimas", "Sertifikuotas darbas", "Ilgaamžis"]
   },
   { 
     icon: Wrench, 
-    title: "Restoration", 
-    description: "Expert restoration of historic stonework preserving original character.",
-    features: ["Historic Matching", "Expert Care", "Preservation"]
+    title: "Restauravimas", 
+    description: "Ekspertų atliekamas istorinio akmens mūro restauravimas, išsaugant originalų charakterį.",
+    features: ["Istorinių objektų derinimas", "Ekspertų priežiūra", "Išsaugojimas"]
   },
 ];
 
@@ -44,8 +44,8 @@ const Services = () => {
     <section id="services" className="py-24 bg-stone-gradient">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <p className="text-secondary font-medium tracking-[0.3em] uppercase text-sm mb-4">What We Do</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-light mb-4">Our Services</h2>
+          <p className="text-secondary font-medium tracking-[0.3em] uppercase text-sm mb-4">Ką darome</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-light mb-4">Mūsų paslaugos</h2>
           <div className="w-20 h-1 bg-secondary mx-auto rounded" />
         </div>
 
@@ -60,16 +60,13 @@ const Services = () => {
                 <IconComponent className="w-12 h-12 text-secondary mb-5 group-hover:scale-125 transition-transform" />
                 <h3 className="font-display text-xl font-semibold text-light mb-3">{service.title}</h3>
                 <p className="text-light/70 leading-relaxed mb-4">{service.description}</p>
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2">
                   {service.features.map((feature) => (
                     <span key={feature} className="text-xs bg-secondary/20 text-secondary px-3 py-1 rounded-full border border-secondary/40">
                       {feature}
                     </span>
                   ))}
                 </div>
-                <button className="text-secondary hover:text-light font-medium text-sm flex items-center gap-2 group-hover:gap-3 transition-all hover:underline">
-                  Learn More <ArrowRight className="w-4 h-4" />
-                </button>
               </div>
             );
           })}

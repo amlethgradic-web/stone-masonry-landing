@@ -12,14 +12,29 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    
+    // Create email content
+    const subject = encodeURIComponent(`Naujas užklausimas iš ${formData.name}`);
+    const body = encodeURIComponent(
+      `Vardas: ${formData.name}\n` +
+      `Telefonas: ${formData.phone}\n` +
+      `El. paštas: ${formData.email}\n` +
+      `Paslauga: ${formData.service}\n\n` +
+      `Žinutė:\n${formData.message}`
+    );
+    
+    // Open email client with pre-filled content
+    window.location.href = `mailto:akmensburtininkas@pm.me?subject=${subject}&body=${body}`;
+    
+    // Optionally reset form
+    // setFormData({ name: "", phone: "", email: "", service: "", message: "" });
   };
 
   const contactInfo = [
-    { icon: Phone, text: "+370 645 39 734", label: "Call us", href: "tel:+37064539734" },
-    { icon: Mail, text: "akmensburtininkas@pm.me", label: "Email us", href: "mailto:akmensburtininkas@pm.me" },
-    { icon: MapPin, text: "Lithuania", label: "Location" },
-    { icon: Clock, text: "Mon–Sat: 7:00 AM – 6:00 PM", label: "Hours" },
+    { icon: Phone, text: "+370 645 39 734", label: "Skambinkite", href: "tel:+37064539734" },
+    { icon: Mail, text: "akmensburtininkas@pm.me", label: "El. paštas", href: "mailto:akmensburtininkas@pm.me" },
+    { icon: MapPin, text: "Kaunas", label: "Vieta" },
+    { icon: Clock, text: "Pr–Št: 7:00 – 18:00", label: "Darbo laikas" },
   ];
 
   return (
@@ -28,12 +43,12 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Info */}
           <div>
-            <p className="text-secondary font-medium tracking-[0.3em] uppercase text-sm mb-4">Get In Touch</p>
+            <p className="text-secondary font-medium tracking-[0.3em] uppercase text-sm mb-4">Susisiekite</p>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-light mb-6">
-              Ready to Start Your Project?
+              Pasiruošę pradėti savo projektą?
             </h2>
             <p className="text-light/70 leading-relaxed mb-10">
-              Contact us for a free consultation and estimate. We'll visit your site, discuss your vision, and provide a detailed plan.
+              Susisiekite su mumis dėl nemokamos konsultacijos ir įkainojimo. Aplankysime vietą, aptarsime jūsų viziją ir pateiks išsamų planą.
             </p>
             <div className="space-y-6">
               {contactInfo.map((item) => {
@@ -65,7 +80,7 @@ const Contact = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <input 
                   type="text" 
-                  placeholder="Your Name" 
+                  placeholder="Jūsų vardas" 
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -73,7 +88,7 @@ const Contact = () => {
                 />
                 <input 
                   type="tel" 
-                  placeholder="Phone Number" 
+                  placeholder="Telefono numeris" 
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value})}
@@ -82,7 +97,7 @@ const Contact = () => {
               </div>
               <input 
                 type="email" 
-                placeholder="Email Address" 
+                placeholder="El. pašto adresas" 
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                 className="w-full bg-primary/30 border-2 border-secondary/40 rounded-lg px-4 py-3 text-light placeholder:text-light/40 focus:outline-none focus:border-secondary transition-all" 
@@ -92,17 +107,17 @@ const Contact = () => {
                 onChange={(e) => setFormData({...formData, service: e.target.value})}
                 className="w-full bg-primary/30 border-2 border-secondary/40 rounded-lg px-4 py-3 text-light/70 focus:outline-none focus:border-secondary transition-all"
               >
-                <option value="">Select Service</option>
-                <option value="retaining-walls">Residential Concrete Works</option>
-                <option value="fireplaces">Tiling</option>
-                <option value="stone-veneer">Custom Stone or Tile Projects</option>
-                <option value="patios">Patios & Walkways</option>
-                <option value="foundation">Foundation Work</option>
-                <option value="restoration">Restoration</option>
+                <option value="">Pasirinkite paslaugą</option>
+                <option value="retaining-walls">Gyvenamųjų namų betonavimo darbai</option>
+                <option value="fireplaces">Plytelių klijavimas</option>
+                <option value="stone-veneer">Individualūs akmens ar plytelių projektai</option>
+                <option value="patios">Terasų ir takelių įrengimas</option>
+                <option value="foundation">Pamatų darbai</option>
+                <option value="restoration">Restauravimas</option>
         
               </select>
               <textarea 
-                placeholder="Tell us about your project..." 
+                placeholder="Papasakokite apie savo projektą..." 
                 rows={4} 
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
@@ -112,7 +127,8 @@ const Contact = () => {
                 type="submit" 
                 className="w-full bg-secondary hover:bg-secondary/90 text-primary font-semibold py-6 text-base tracking-wide rounded-lg transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
               >
-                Request Free Estimate
+                Prašyti nemokamo kainos įvertinimo
+              
               </button>
             </form>
           </div>

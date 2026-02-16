@@ -1,9 +1,9 @@
 const About = () => {
   const stats = [
-    { number: "9+", label: "Years Experience" },
-    { number: "500+", label: "Projects Completed" },
-    { number: "100%", label: "Licensed & Insured" },
-    { number: "4.9★", label: "Customer Rating" },
+    { number: "9+", label: "Metų Patirtis" },
+    { number: "500+", label: "Įvykdytų Projektų" },
+    { number: "100%", label: "Licencijuotas ir Apdraustas" },
+    { number: "4.9★", label: "Klientų Įvertinimas" },
   ];
 
   return (
@@ -22,19 +22,17 @@ const About = () => {
 
           {/* Text */}
           <div>
-            <p className="text-secondary font-medium tracking-[0.3em] uppercase text-sm mb-4">Our Story</p>
+            <p className="text-secondary font-medium tracking-[0.3em] uppercase text-sm mb-4">Mano Istorija</p>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-light mb-6">
-              Craftsmanship Rooted in Tradition
+              Darbų garantija ir laiku, bei švariai atliekamas darbas
             </h2>
             <p className="text-light/70 leading-relaxed mb-6">
-              For over 9 years, Akmens Burtininkas has been the trusted name in natural stone masonry. 
-              Our team of master craftsmen combines time-honored techniques with modern engineering 
-              to deliver stonework that stands the test of time.
+              Aukštos kokybės plytelių klijavimo, betonavimo, akmens apdirbimo ir renovacijos paslaugos!
+Ieškote profesionalaus meistro, kuris galėtų pasirūpinti jūsų statybos ar remonto darbais? Esu meistras, įgijęs ilgametės patirties Islandijoje, Italijoje ir Olandijoje, todėl garantuoju aukščiausią darbo kokybę ir atitikimą tarptautiniams standartams.
             </p>
             <p className="text-light/70 leading-relaxed">
-              Every stone we lay is a testament to our dedication to quality. From grand fireplaces 
-              to elegant patios, we approach each project with the same passion and precision that 
-              has earned us the trust of hundreds of homeowners.
+              Dirbu Kaune ir visoje Lietuvoje.
+Pasitikėkite specialistu, kuris per daugelį metų įgijo patirtį ir meistriškumą!
             </p>
           </div>
         </div>

@@ -2,25 +2,18 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    name: "John Smith",
-    role: "Homeowner",
-    text: "Akmens Burtininkas transformed our outdoor space with a beautiful stone patio. The craftsmanship is impeccable and the team was professional throughout.",
+    name: "Rita Lengvensaitė",
+    role: "Atlikta paslauga: Plytelių klijavimas, 2025-11",
+    text: "Darbas atliktas atsakingai bei kruopščiai. Viskas kaip sutarta, bendravimas sklandus. Gražu!\nLabai rekomenduoju 🤎",
     rating: 5,
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=John"
   },
   {
-    name: "Sarah Johnson",
-    role: "Property Manager",
-    text: "We hired them for a complete fireplace restoration. They matched the historic stonework perfectly. Highly recommended!",
+    name: "Rita Vaičiulienė",
+    role: "Atlikta paslauga: 2025-07",
+    text: "Dirba labai tvarkingai. Siūlo sprendimus. Esam patenkinti darbo kokybe ir kaina.",
     rating: 5,
     image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
-  },
-  {
-    name: "Michael Brown",
-    role: "Business Owner",
-    text: "Professional, punctual, and meticulous. They completed our commercial facade project ahead of schedule without compromising quality.",
-    rating: 5,
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Michael"
   },
 ];
 
@@ -29,8 +22,8 @@ const Testimonials = () => {
     <section className="py-24 bg-primary">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <p className="text-secondary font-medium tracking-[0.3em] uppercase text-sm mb-4">Testimonials</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-light mb-4">What Our Clients Say</h2>
+          <p className="text-secondary font-medium tracking-[0.3em] uppercase text-sm mb-4">Atsiliepimai</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-light mb-4">Ką sako mūsų klientai</h2>
           <div className="w-20 h-1 bg-secondary mx-auto rounded" />
         </div>
 

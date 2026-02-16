@@ -13,10 +13,10 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
-          <a href="#services" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Services</a>
-          <a href="#about" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">About</a>
-          <a href="#gallery" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Gallery</a>
-          <a href="#contact" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Contact</a>
+          <a href="#services" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Paslaugos</a>
+          <a href="#about" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Apie</a>
+          <a href="#gallery" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Galerija</a>
+          <a href="#contact" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Kontaktai</a>
         </div>
 
         {/* Desktop CTA */}
@@ -37,10 +37,10 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-secondary/20 py-4 px-6 space-y-4 bg-primary">
-          <a href="#services" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">Services</a>
-          <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">About</a>
-          <a href="#gallery" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">Gallery</a>
-          <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">Contact</a>
+          <a href="#services" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">Paslaugos</a>
+          <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">Apie</a>
+          <a href="#gallery" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">Galerija</a>
+          <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">Kontaktai</a>
           <a href="tel:+37064539734" className="flex items-center gap-2 text-secondary font-medium text-sm pt-4 border-t border-secondary/20">
             <Phone className="w-4 h-4" />
             +370 645 39 734

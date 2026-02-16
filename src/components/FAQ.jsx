@@ -3,28 +3,24 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "How long does a typical stone masonry project take?",
-    answer: "Project timelines vary based on scope and complexity. Simple patios may take 1-2 weeks, while custom fireplaces or extensive retaining walls can take 3-6 weeks. We provide a detailed timeline during the consultation."
+    question: "Kiek laiko trunka tipinis projektas?",
+    answer: "Projektų trukmė priklauso nuo apimties ir sudėtingumo. Paprasti plytelių klijavimo darbai gali užtrukti 1-2 dienas, o individualūs vonios kambariai ar placioš atramines sienos gali užtrukti 2-4 savaites. Konsultacijos metu pateikiame išsamų tvarkaraštį."
   },
   {
-    question: "Do you offer a warranty on your work?",
-    answer: "Yes! We offer a 10-year warranty on all our masonry work. We stand behind our craftsmanship and use only premium materials to ensure your project lasts generations."
+    question: "Ar teikiate garantiją savo darbui?",
+    answer: "Taip! Daugumai mūsų darbų teikiama 10 metų garantiją. Stengiamės užtikrinti aukščiausią kokybę ir naudojame tik aukščiausios klasės medžiagas, kad jūsų projektas tarnautų kartoms."
   },
   {
-    question: "What's included in a free consultation?",
-    answer: "Our consultation includes a site visit, discussion of your vision and budget, material selection, detailed measurements, and a comprehensive estimate. There's no obligation."
+    question: "Kas įtraukta į nemokamą konsultaciją?",
+    answer: "Mūsų konsultacija apima apsilankymą vietoje, jūsų vizijos ir biudžeto aptarimą, medžiagų pasirinkimą, išsamius iš matavimus ir kainos aptarimą. Jokių įsipareigojimų."
   },
   {
-    question: "Do you handle both interior and exterior work?",
-    answer: "Absolutely! We specialize in both interior (fireplaces, hearths, accent walls) and exterior work (patios, walkways, retaining walls, façades)."
+    question: "Ar atlikate tiek vidaus, tiek išorės darbus?",
+    answer: "Žinoma! Specializuojamės tiek vidaus darbuose (plytelių klijavimas, betono lyginimas, sienų lyginimas), tiek išorės darbuose (terasų įrengimas, takeliai, atramines sienos, fasadai)."
   },
   {
-    question: "What types of stone do you work with?",
-    answer: "We work with a wide variety of natural stone including granite, limestone, marble, slate, fieldstone, and flagstone. We can source materials that match your specific aesthetic and budget."
-  },
-  {
-    question: "Are you licensed and insured?",
-    answer: "Yes, we are fully licensed, insured, and certified. We carry liability and workers' compensation insurance for your peace of mind."
+    question: "Su kokiais akmens tipais dirbate?",
+    answer: "Dirbame su įvairiais natūraliais akmenimis, įskaitant granitą, kalkakmenį, marmurą, skiedrą, laukiniais akmenimis ir dar daugiau. Galime parinkti medžiagas, atitinkančias jūsų estetinius pageidavimus ir biudžetą."
   },
 ];
 
@@ -35,8 +31,8 @@ const FAQ = () => {
     <section className="py-24 bg-stone-gradient">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <p className="text-secondary font-medium tracking-[0.3em] uppercase text-sm mb-4">Common Questions</p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-light mb-4">Frequently Asked Questions</h2>
+          <p className="text-secondary font-medium tracking-[0.3em] uppercase text-sm mb-4">Dažni klausimai</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-light mb-4">Dažniausiai užduodami klausimai</h2>
           <div className="w-20 h-1 bg-secondary mx-auto rounded" />
         </div>
 

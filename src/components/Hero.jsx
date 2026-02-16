@@ -16,41 +16,41 @@ const Hero = () => {
         {/* Trust Badge */}
         <div className="inline-flex items-center gap-2 bg-secondary/20 border-2 border-secondary rounded-full px-4 py-2 mb-6 hover:bg-secondary/30 transition-colors">
           <Star className="w-4 h-4 text-secondary fill-secondary" />
-          <span className="text-secondary text-sm font-medium">9+ Years · Licensed & Insured</span>
+          <span className="text-secondary text-sm font-medium">9+ Metai · Licencijuota ir Apdraustas</span>
         </div>
 
         <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-light leading-tight mb-6">
-          Built to Last
+          Sukurta tarnauti
           <br />
-          <span className="text-secondary">Generations</span>
+          <span className="text-secondary">Kartoms</span>
         </h1>
 
         <p className="text-light/70 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
-          Expert stone masonry and tiling services crafted with precision, passion, and over 9 years of experience in natural stone construction.
+          Eksperto akmens mūro ir plytelių klijavimo paslaugos, atliekamos su tikslumu, aistra ir daugiau nei 9 metų patirtimi natūralaus akmens statyboje.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <button className="bg-secondary hover:bg-secondary/90 text-primary font-semibold px-8 py-6 text-base tracking-wide rounded transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
-            Get a Free Estimate
-          </button>
-          <button className="border-2 border-secondary text-secondary hover:bg-secondary/10 font-semibold px-8 py-6 text-base tracking-wide rounded transition-all hover:border-light">
-            View My Work
-          </button>
+          <a href="#contact" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold px-8 py-6 text-base tracking-wide rounded transition-all shadow-lg hover:shadow-xl transform hover:scale-105 inline-block">
+            Gauti nemokamą konsultaciją
+          </a>
+          <a href="#gallery" className="border-2 border-secondary text-secondary hover:bg-secondary/10 font-semibold px-8 py-6 text-base tracking-wide rounded transition-all hover:border-light inline-block">
+            Peržiūrėti mano darbus
+          </a>
         </div>
 
         {/* Benefits */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
           <div className="flex items-center justify-center gap-2 text-light/80 text-sm bg-primary/50 px-4 py-3 rounded-lg backdrop-blur-sm border border-secondary/20">
             <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
-            <span>Free Consultation</span>
+            <span>Nemokama konsultacija</span>
           </div>
           <div className="flex items-center justify-center gap-2 text-light/80 text-sm bg-primary/50 px-4 py-3 rounded-lg backdrop-blur-sm border border-secondary/20">
             <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
-            <span>10 Year Warranty</span>
+            <span>10 metų garantija</span>
           </div>
           <div className="flex items-center justify-center gap-2 text-light/80 text-sm bg-primary/50 px-4 py-3 rounded-lg backdrop-blur-sm border border-secondary/20">
             <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
-            <span>Flexible Financing</span>
+            <span>Lankstus finansavimas</span>
           </div>
         </div>
       </div>
