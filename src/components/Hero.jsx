@@ -1,13 +1,20 @@
-import { Star, CheckCircle } from "lucide-react";
+import { Star, CheckCircle, Calculator } from "lucide-react";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background with gradient overlay */}
-      <div className="absolute inset-0 bg-charcoal-gradient">
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: `url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg2MHY2MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0zMCAzMG0tMjAgMGEyMCAyMCAwIDEgMCA0MCAwYTIwIDIwIDAgMSAwLTQwIDAiIHN0cm9rZT0iI0Q0Qjg5NiIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIwLjUiLz48L3N2Zz4=')`
-        }} />
+      {/* Background with stone wall image and brown overlay */}
+      <div className="absolute inset-0">
+        {/* Stone wall image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/peakpx.jpg')`,
+          }}
+        />
+        {/* Brown  overlay */}
+        <div className="absolute inset-0 bg-[#3d3022]/75" />
+        {/* Gradient to primary at bottom */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary" />
       </div>
 
@@ -33,7 +40,11 @@ const Hero = () => {
           <a href="#contact" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold px-8 py-6 text-base tracking-wide rounded transition-all shadow-lg hover:shadow-xl transform hover:scale-105 inline-block">
             Gauti nemokamą konsultaciją
           </a>
-          <a href="#gallery" className="border-2 border-secondary text-secondary hover:bg-secondary/10 font-semibold px-8 py-6 text-base tracking-wide rounded transition-all hover:border-light inline-block">
+          <a href="#calculator" className="border-2 border-secondary text-secondary hover:bg-secondary/10 font-semibold px-8 py-6 text-base tracking-wide rounded transition-all hover:border-light inline-flex items-center justify-center gap-2">
+            <Calculator className="w-5 h-5" />
+            Skaičiuoti kainą
+          </a>
+          <a href="#gallery" className="border-2 border-secondary/50 text-secondary/80 hover:bg-secondary/10 hover:text-secondary font-semibold px-8 py-6 text-base tracking-wide rounded transition-all hover:border-secondary inline-block">
             Peržiūrėti mano darbus
           </a>
         </div>
