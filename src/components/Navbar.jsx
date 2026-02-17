@@ -20,6 +20,7 @@ const Navbar = () => {
           <a href="#about" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Apie</a>
           <a href="#gallery" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Galerija</a>
           <a href="#contact" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Kontaktai</a>
+        <a href="#calculator" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Skaičiuotuvas</a>
         </div>
 
         {/* Desktop CTA */}
