@@ -19,8 +19,8 @@ export default {
         card: '#4A2C1C',
       },
       fontFamily: {
-        display: ['Playfair Display', 'serif'],
-      },
+  display: ['Faustina', 'serif'],
+},
       container: {
         center: true,
         padding: '1rem',
