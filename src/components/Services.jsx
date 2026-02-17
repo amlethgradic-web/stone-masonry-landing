@@ -27,7 +27,7 @@ const services = [
   },
   { 
     icon: Blocks, 
-    title: "Pamatų darbai", 
+    title: "Vonios remontas", 
     description: "Tvirti akmens pamatai ir konstrukcinis mūras ilgalaikiam stabilumui.",
     features: ["Apkrovų pernešimas", "Sertifikuotas darbas", "Ilgaamžis"]
   },
