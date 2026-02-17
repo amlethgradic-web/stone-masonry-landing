@@ -38,15 +38,15 @@ const locationTypes = {
 
 const tileSizeMultipliers = {
   small:  { label: "Mažos — iki 60 cm", description: "Standartinis dydis, įprastas klojimas", min: 1.0, max: 1.0 },
-  medium: { label: "Vidutinės — iki 120 cm", description: "Didesnis formatas, reikia didesnio tikslumo", min: 1.2, max: 1.3 },
-  large:  { label: "Didelės — virš 120 cm", description: "Didelės plokštės, reikalingas specialistas", min: 1.5, max: 1.6 },
+  medium: { label: "Vidutinės — iki 120 cm", description: "Didesnis formatas, reikia didesnio tikslumo", min: 1.5, max: 1.7 },
+  large:  { label: "Didelės — virš 120 cm", description: "Didelės plokštės, reikalingas specialistas", min: 1.7, max: 1.9 },
 };
 
 const basePrices = {
-  masonry: { natural: [45, 65], brick: [30, 45] },
-  tiles: { ceramic: [20, 35], porcelain: [25, 40], natural_stone: [40, 60], mosaic: [50, 75] },
+  masonry: { natural: [50, 75], brick: [30, 45] },
+  tiles: { ceramic: [25, 40], porcelain: [25, 45], natural_stone: [45, 60], mosaic: [45, 75] },
   restoration: { stone: [55, 80], tiles: [35, 55] },
-  outdoor: { floor: [30, 50], clinker: [40, 60], concrete: [0, 0] }, // concrete uses its own sub-type pricing
+  outdoor: { floor: [40, 65], clinker: [25, 45], concrete: [0, 0] }, // concrete uses its own sub-type pricing
 };
 
 const siteStatusMultipliers = {
@@ -117,7 +117,7 @@ const SelectField = ({ label, value, onChange, options, placeholder }) => (
   </div>
 );
 
-const PriceCalculatorEN = () => {
+const PriceCalculator = () => {
   const [workType, setWorkType] = useState("");
   const [material, setMaterial] = useState("");
   const [concreteSubType, setConcreteSubType] = useState("");
@@ -243,67 +243,6 @@ const PriceCalculatorEN = () => {
       foundation, foundMin, foundMax,
       foundationLength: lm,
     });
-  };
-
-  const buildQuoteSummary = () => {
-    // Map calculator state to a contact form service value
-    const serviceMap = {
-      masonry: "stone-veneer",
-      tiles: "fireplaces",
-      restoration: "restoration",
-    };
-    let service = serviceMap[workType] || "";
-    if (workType === "outdoor") {
-      if (material === "concrete") {
-        service = concreteSubType === "foundation" ? "foundation" : "retaining-walls";
-      } else {
-        service = "patios";
-      }
-    }
-
-    // Build a human-readable summary for the message field
-    const workTypeLabel = workTypes.find((w) => w.id === workType)?.label || workType;
-    const materialLabel = materialTypes[workType]?.find((m) => m.id === material)?.label || material;
-
-    const lines = [
-      "📋 Skaičiuoklės duomenys:",
-      `Darbų tipas: ${workTypeLabel}`,
-      `Medžiaga: ${materialLabel}`,
-    ];
-
-    if (isConcrete && concreteSubTypeData) {
-      lines.push(`Betonavimo tipas: ${concreteSubTypeData.label}`);
-    }
-    if (needsTileSize && tileSize) {
-      lines.push(`Plytelių dydis: ${tileSizeMultipliers[tileSize].label}`);
-    }
-    if (location) {
-      lines.push(`Vieta: ${location}`);
-    }
-    if (waterproofing) {
-      lines.push("Hidroizoliacija: Taip");
-    }
-    if (foundation) {
-      lines.push(`Pamatas: Taip (${foundationLength} lm)`);
-    }
-    if (siteStatus) {
-      lines.push(`Statybvietės būklė: ${siteStatusMultipliers[siteStatus].label}`);
-    }
-
-    const unit = (isConcrete && concreteUsesLm) ? "lm" : "m²";
-    lines.push(`Plotas / ilgis: ${area} ${unit}`);
-
-    if (result) {
-      lines.push(`Apytikslė kaina (darbas): €${result.min.toLocaleString()} – €${result.max.toLocaleString()}`);
-    }
-
-    return { service, message: lines.join("\n") };
-  };
-
-  const handleGetQuote = () => {
-    const { service, message } = buildQuoteSummary();
-    window.dispatchEvent(new CustomEvent("calculator-quote", { detail: { service, message } }));
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const reset = () => {
@@ -646,12 +585,12 @@ const PriceCalculatorEN = () => {
                     >
                       Pradėti iš naujo
                     </button>
-                    <button
-                      onClick={handleGetQuote}
+                    <a
+                      href="#contact"
                       className="flex-1 py-3 bg-secondary text-primary rounded-xl hover:bg-secondary/90 transition-all duration-200 font-bold text-sm text-center"
                     >
                       Gauti tikslią kainą
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>

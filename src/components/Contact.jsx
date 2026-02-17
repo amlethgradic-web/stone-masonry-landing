@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,23 +9,11 @@ const Contact = () => {
     service: "",
     message: ""
   });
-  const [prefilled, setPrefilled] = useState(false);
-  const formRef = useRef(null);
-
-  useEffect(() => {
-    const handleQuote = (e) => {
-      const { service, message } = e.detail;
-      setFormData((prev) => ({ ...prev, service, message }));
-      setPrefilled(true);
-      // Brief highlight — clear after 2.5s
-      setTimeout(() => setPrefilled(false), 2500);
-    };
-    window.addEventListener("calculator-quote", handleQuote);
-    return () => window.removeEventListener("calculator-quote", handleQuote);
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Create email content
     const subject = encodeURIComponent(`Naujas užklausimas iš ${formData.name}`);
     const body = encodeURIComponent(
       `Vardas: ${formData.name}\n` +
@@ -34,7 +22,12 @@ const Contact = () => {
       `Paslauga: ${formData.service}\n\n` +
       `Žinutė:\n${formData.message}`
     );
+    
+    // Open email client with pre-filled content
     window.location.href = `mailto:akmensburtininkas@pm.me?subject=${subject}&body=${body}`;
+    
+    // Optionally reset form
+    // setFormData({ name: "", phone: "", email: "", service: "", message: "" });
   };
 
   const contactInfo = [
@@ -48,6 +41,7 @@ const Contact = () => {
     <section id="contact" className="py-24 bg-charcoal-gradient">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Info */}
           <div>
             <p className="text-secondary font-medium tracking-[0.3em] uppercase text-sm mb-4">Susisiekite</p>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-light mb-6">
@@ -80,43 +74,38 @@ const Contact = () => {
             </div>
           </div>
 
-          <div ref={formRef} className={`bg-secondary/10 backdrop-blur-sm rounded-xl p-8 border-2 transition-all duration-500 ${prefilled ? "border-secondary shadow-lg shadow-secondary/20" : "border-secondary/40 hover:border-secondary/80"}`}>
-            {prefilled && (
-              <div className="mb-5 flex items-center gap-3 bg-secondary/20 border border-secondary/40 rounded-lg px-4 py-3 animate-fade-up">
-                <span className="text-secondary text-lg">✓</span>
-                <p className="text-secondary text-sm font-semibold">Skaičiuoklės duomenys užpildyti. Įveskite savo kontaktus ir siųskite užklausą.</p>
-              </div>
-            )}
+          {/* Form */}
+          <div className="bg-secondary/10 backdrop-blur-sm rounded-xl p-8 border-2 border-secondary/40 hover:border-secondary/80 transition-all">
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <input
-                  type="text"
-                  placeholder="Jūsų vardas"
+                <input 
+                  type="text" 
+                  placeholder="Jūsų vardas" 
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full bg-primary/30 border-2 border-secondary/40 rounded-lg px-4 py-3 text-light placeholder:text-light/40 focus:outline-none focus:border-secondary transition-all"
+                  className="w-full bg-primary/30 border-2 border-secondary/40 rounded-lg px-4 py-3 text-light placeholder:text-light/40 focus:outline-none focus:border-secondary transition-all" 
                 />
-                <input
-                  type="tel"
-                  placeholder="Telefono numeris"
+                <input 
+                  type="tel" 
+                  placeholder="Telefono numeris" 
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  className="w-full bg-primary/30 border-2 border-secondary/40 rounded-lg px-4 py-3 text-light placeholder:text-light/40 focus:outline-none focus:border-secondary transition-all"
+                  className="w-full bg-primary/30 border-2 border-secondary/40 rounded-lg px-4 py-3 text-light placeholder:text-light/40 focus:outline-none focus:border-secondary transition-all" 
                 />
               </div>
-              <input
-                type="email"
-                placeholder="El. pašto adresas"
+              <input 
+                type="email" 
+                placeholder="El. pašto adresas" 
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full bg-primary/30 border-2 border-secondary/40 rounded-lg px-4 py-3 text-light placeholder:text-light/40 focus:outline-none focus:border-secondary transition-all"
+                className="w-full bg-primary/30 border-2 border-secondary/40 rounded-lg px-4 py-3 text-light placeholder:text-light/40 focus:outline-none focus:border-secondary transition-all" 
               />
-              <select
+              <select 
                 value={formData.service}
                 onChange={(e) => setFormData({...formData, service: e.target.value})}
-              className={`w-full bg-primary/30 border-2 rounded-lg px-4 py-3 text-light/70 focus:outline-none focus:border-secondary transition-all ${prefilled && formData.service ? "border-secondary/80 bg-secondary/10" : "border-secondary/40"}`}
+                className="w-full bg-primary/30 border-2 border-secondary/40 rounded-lg px-4 py-3 text-light/70 focus:outline-none focus:border-secondary transition-all"
               >
                 <option value="">Pasirinkite paslaugą</option>
                 <option value="retaining-walls">Gyvenamųjų namų betonavimo darbai</option>
@@ -125,19 +114,21 @@ const Contact = () => {
                 <option value="patios">Terasų ir takelių įrengimas</option>
                 <option value="foundation">Pamatų darbai</option>
                 <option value="restoration">Restauravimas</option>
+        
               </select>
-              <textarea
-                placeholder="Papasakokite apie savo projektą..."
-                rows={4}
+              <textarea 
+                placeholder="Papasakokite apie savo projektą..." 
+                rows={4} 
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
-                className={`w-full bg-primary/30 border-2 rounded-lg px-4 py-3 text-light placeholder:text-light/40 focus:outline-none focus:border-secondary transition-all resize-none ${prefilled && formData.message ? "border-secondary/80 bg-secondary/10" : "border-secondary/40"}`}
+                className="w-full bg-primary/30 border-2 border-secondary/40 rounded-lg px-4 py-3 text-light placeholder:text-light/40 focus:outline-none focus:border-secondary transition-all resize-none" 
               />
-              <button
-                type="submit"
+              <button 
+                type="submit" 
                 className="w-full bg-secondary hover:bg-secondary/90 text-primary font-semibold py-6 text-base tracking-wide rounded-lg transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Prašyti nemokamo kainos įvertinimo
+              
               </button>
             </form>
           </div>
