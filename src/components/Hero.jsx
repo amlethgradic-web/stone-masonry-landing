@@ -36,7 +36,7 @@ const Hero = () => {
           Eksperto akmens mūro ir plytelių klijavimo paslaugos, atliekamos su tikslumu, aistra ir daugiau nei 9 metų patirtimi natūralaus akmens statyboje.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
           <a href="#contact" className="bg-secondary hover:bg-secondary/90 text-primary font-semibold px-8 py-6 text-base tracking-wide rounded transition-all shadow-lg hover:shadow-xl transform hover:scale-105 inline-block">
             Gauti nemokamą konsultaciją
           </a>
@@ -66,10 +66,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-1 h-12 bg-gradient-to-b from-transparent to-secondary" />
-      </div>
+
     </section>
   );
 };
