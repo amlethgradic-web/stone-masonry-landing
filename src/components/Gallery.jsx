@@ -4,8 +4,8 @@ const projects = [
   { image: "/IMG_0980.jpg", title: "Virtuvės plytelės", category: "Interjeras" },
   { image: "/IMG_0292.jpg", title: "Tvoros atnaujinimas", category: "Restauravimas" },
   { image: "/IMG_8725.jpg", title: "Juodosios granito plytelės", category: "Interjeras" },
-  { image: "/IMG_2170.jpg", title: "45°", category: "Interjeras" },
-  { image: "/bathroom-tiles.jpg", title: "Vonios sienos plytelės", category: "Interjeras" },
+  { image: "/bathroom-tiles.jpg", title: "45°", category: "Interjeras" },
+  { image: "/IMG_0894.jpg", title: "Vonios sienos plytelės", category: "Interjeras" },
   { image: "/IMG_6927.jpg", title: "Moderni virtuvė", category: "Interjeras" },
   { image: "/IMG_6441.jpg", title: "Šešiakampės grindys", category: "Interjeras" },
 ];
