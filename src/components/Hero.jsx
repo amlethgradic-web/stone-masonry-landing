@@ -16,7 +16,7 @@ const Hero = () => {
         {/* Trust Badge */}
         <div className="inline-flex items-center gap-2 bg-secondary/20 border-2 border-secondary rounded-full px-4 py-2 mb-6 hover:bg-secondary/30 transition-colors">
           <Star className="w-4 h-4 text-secondary fill-secondary" />
-          <span className="text-secondary text-sm font-medium">9+ Metai · Licencijuota ir Apdraustas</span>
+          <span className="text-secondary text-sm font-medium">9+ Metai · Licencijuotas ir Apdraustas</span>
         </div>
 
         <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-light leading-tight mb-6">
