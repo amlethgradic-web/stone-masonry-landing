@@ -40,7 +40,7 @@ const projects = [
  { image: "/bathroom-tiles.jpg", title: "45°", category: "Interjeras" },
   { image: "/IMG_0658.JPEG", title: "Metro plytelės", category: "Interjeras" },
   { image: "/IMG_6135.JPEG", title: "Baltos dušo plytelės", category: "Interjeras" },
-  { image: "/IMG_8778.JPEG", title: "Teraco grindys", category: "Interjeras" },
+  { image: "/IMG_8778.JPEG", title: "Terrazzo grindys", category: "Interjeras" },
   { image: "/IMG_8178.JPEG", title: "Smėlio spalvos dušas", category: "Interjeras" },
 ];
 
