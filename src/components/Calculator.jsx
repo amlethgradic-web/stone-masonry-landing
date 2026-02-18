@@ -648,7 +648,7 @@ const PriceCalculator = () => {
                           "Medžiaga: " + materialLabel,
                           concreteLabel   ? "Betonavimo tipas: " + concreteLabel : null,
                           tileSizeLabel   ? "Plytelių dydis: " + tileSizeLabel : null,
-                          miterCorners !== null ? "Glifuoti išoriniai kampai: " + (miterCorners ? "Taip" : "Ne") : null,
+                          miterCorners !== null ? "Kampai 45° užpildyti epoksidu: " + (miterCorners ? "Taip" : "Ne") : null,
                           location        ? "Vieta: " + location : null,
                           waterproofing !== null ? "Hidroizoliacija: " + (waterproofing ? "Taip" : "Ne") : null,
                           siteStatusLabel ? "Statybvietės būklė: " + siteStatusLabel : null,
