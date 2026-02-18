@@ -25,7 +25,7 @@ const Footer = () => {
               <li><a href="#services" className="text-light/60 hover:text-secondary transition-colors text-sm">Plytelių klijavimas</a></li>
               <li><a href="#services" className="text-light/60 hover:text-secondary transition-colors text-sm">Betonavimo darbai</a></li>
               <li><a href="#services" className="text-light/60 hover:text-secondary transition-colors text-sm">Individualūs projektai</a></li>
-              <li><a href="#services" className="text-light/60 hover:text-secondary transition-colors text-sm">Terasų įrengimas</a></li>
+              <li><a href="#services" className="text-light/60 hover:text-secondary transition-colors text-sm">Vonios remontas</a></li>
               <li><a href="#services" className="text-light/60 hover:text-secondary transition-colors text-sm">Restauravimas</a></li>
             </ul>
           </div>
@@ -67,10 +67,10 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Social Links */}
             <div className="flex items-center gap-6">
-              <a href="#" className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center hover:bg-secondary/40 transition-all border border-secondary/40 group">
+              <a href="https://www.facebook.com/profile.php?id=61572214083348" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center hover:bg-secondary/40 transition-all border border-secondary/40 group">
                 <Facebook className="w-5 h-5 text-secondary group-hover:scale-110 transition-transform" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center hover:bg-secondary/40 transition-all border border-secondary/40 group">
+              <a href="https://www.instagram.com/akmens_burtininkas/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center hover:bg-secondary/40 transition-all border border-secondary/40 group">
                 <Instagram className="w-5 h-5 text-secondary group-hover:scale-110 transition-transform" />
               </a>
             </div>

@@ -8,8 +8,8 @@ const Navbar = () => {
   <nav className="fixed top-0 left-0 right-0 z-50 py-0 bg-primary/95 backdrop-blur-sm border-b border-secondary/20 overflow-hidden">
       <div className="container mx-auto px-6 py-0 flex items-center justify-between">
         <a href="#" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <img src="/logo_transparent.png" alt="Akmens Burtininkas" className="h-36 w-36 object-contain -my-6" />
-          <span className="font-display text-2xl font-bold text-light tracking-wide">
+          <img src="/logo_transparent.png" alt="Akmens Burtininkas" className="h-24 w-24 md:h-36 md:w-36 object-contain -my-4 md:-my-6" />
+          <span className="font-display text-lg md:text-2xl font-bold text-light tracking-wide">
             AKMENS<span className="text-secondary"> BURTININKAS</span>
           </span>
         </a>
@@ -20,7 +20,7 @@ const Navbar = () => {
           <a href="#about" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Apie</a>
           <a href="#gallery" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Galerija</a>
           <a href="#contact" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Kontaktai</a>
-        <a href="#calculator" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Skaičiuotuvas</a>
+          <a href="#calculator" className="text-light/80 hover:text-secondary transition-colors text-sm font-medium tracking-wide uppercase">Skaičiuotuvas</a>
         </div>
 
         {/* Desktop CTA */}
