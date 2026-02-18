@@ -45,6 +45,7 @@ const Navbar = () => {
           <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">Apie</a>
           <a href="#gallery" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">Galerija</a>
           <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">Kontaktai</a>
+          <a href="#calculator" onClick={() => setMobileMenuOpen(false)} className="block text-light/80 hover:text-secondary transition-colors text-sm font-medium uppercase">Skaičiuotuvas</a>
           <a href="tel:+37064539734" className="flex items-center gap-2 text-secondary font-medium text-sm pt-4 border-t border-secondary/20">
             <Phone className="w-4 h-4" />
             +370 645 39 734
