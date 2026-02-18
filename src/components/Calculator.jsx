@@ -46,7 +46,7 @@ const basePrices = {
   masonry: { natural: [50, 75], brick: [30, 45] },
   tiles: { ceramic: [25, 40], porcelain: [25, 45], natural_stone: [45, 60], mosaic: [45, 75] },
   restoration: { stone: [55, 80], tiles: [35, 55] },
-  outdoor: { floor: [40, 65], clinker: [25, 45], concrete: [0, 0] }, // concrete uses its own sub-type pricing
+  outdoor: { floor: [40, 65], clinker: [25, 45], concrete: [0, 0] },
 };
 
 const siteStatusMultipliers = {
@@ -56,11 +56,11 @@ const siteStatusMultipliers = {
 
 const WATERPROOFING_MIN = 100;
 const WATERPROOFING_MAX = 250;
+const MITER_MIN = 150;
+const MITER_MAX = 300;
 const FOUNDATION_MIN_PER_LM = 75;
 const FOUNDATION_MAX_PER_LM = 200;
 
-// Concrete works sub-types — all prices include formwork labour
-// Prices are per m² (floor, stairs, retaining wall) or per lm (foundation)
 const concreteSubTypes = [
   {
     id: "floor",
@@ -124,6 +124,7 @@ const PriceCalculator = () => {
   const [tileSize, setTileSize] = useState("");
   const [location, setLocation] = useState("");
   const [waterproofing, setWaterproofing] = useState(null);
+  const [miterCorners, setMiterCorners] = useState(null);
   const [foundation, setFoundation] = useState(null);
   const [foundationLength, setFoundationLength] = useState("");
   const [siteStatus, setSiteStatus] = useState("");
@@ -137,6 +138,7 @@ const PriceCalculator = () => {
     setTileSize("");
     setLocation("");
     setWaterproofing(null);
+    setMiterCorners(null);
     setFoundation(null);
     setFoundationLength("");
     setSiteStatus("");
@@ -159,12 +161,12 @@ const PriceCalculator = () => {
   const isMasonry = workType === "masonry";
   const isConcrete = workType === "outdoor" && material === "concrete";
   const needsTileSize = workType === "tiles";
+  const needsMiterCorners = workType === "tiles";
   const needsWaterproofing = workType === "tiles" && location === "Vonios kambarys";
   const needsFoundation = isMasonry;
   const needsLocation = !isMasonry && !isConcrete;
   const needsSiteCondition = !isMasonry && !isConcrete && workType !== "restoration";
 
-  // Concrete sub-type: foundation uses lm input, others use m²
   const concreteSubTypeData = concreteSubTypes.find((c) => c.id === concreteSubType);
   const concreteUsesLm = concreteSubType === "foundation";
 
@@ -172,7 +174,8 @@ const PriceCalculator = () => {
   const showConcreteSubType = isConcrete && material;
   const showFoundation = needsFoundation && material;
   const showTileSize = needsTileSize && material;
-  const showLocation = needsLocation && workType && material && (!needsTileSize || tileSize);
+  const showMiterCorners = needsMiterCorners && tileSize;
+  const showLocation = needsLocation && workType && material && (!needsTileSize || tileSize) && (!needsMiterCorners || miterCorners !== null);
   const showWaterproofing = needsWaterproofing && location;
   const showSiteCondition = needsSiteCondition && showLocation && location && (!needsWaterproofing || waterproofing !== null);
   const showArea =
@@ -185,6 +188,7 @@ const PriceCalculator = () => {
     workType && material && area && Number(area) > 0 &&
     (!isConcrete || concreteSubType) &&
     (!needsTileSize || tileSize) &&
+    (!needsMiterCorners || miterCorners !== null) &&
     (!needsLocation || location) &&
     (!needsWaterproofing || waterproofing !== null) &&
     (!needsFoundation || (foundation !== null && (!foundation || (foundationLength && Number(foundationLength) > 0)))) &&
@@ -195,7 +199,6 @@ const PriceCalculator = () => {
 
     const areaNum = Number(area);
 
-    // Concrete works — price is self-contained per sub-type (includes formwork)
     if (isConcrete && concreteSubTypeData) {
       const labourMin = Math.round(concreteSubTypeData.min * areaNum);
       const labourMax = Math.round(concreteSubTypeData.max * areaNum);
@@ -206,6 +209,7 @@ const PriceCalculator = () => {
         unit: concreteSubTypeData.unit,
         concreteLabel: concreteSubTypeData.label,
         waterproofing: false, waterMin: 0, waterMax: 0,
+        miterCorners: false, miterMin: 0, miterMax: 0,
         foundation: false, foundMin: 0, foundMax: 0, foundationLength: 0,
       });
       return;
@@ -231,15 +235,19 @@ const PriceCalculator = () => {
     const waterMin = waterproofing ? WATERPROOFING_MIN : 0;
     const waterMax = waterproofing ? WATERPROOFING_MAX : 0;
 
+    const miterMin = miterCorners ? MITER_MIN : 0;
+    const miterMax = miterCorners ? MITER_MAX : 0;
+
     const lm = foundation ? Number(foundationLength) : 0;
     const foundMin = Math.round(FOUNDATION_MIN_PER_LM * lm);
     const foundMax = Math.round(FOUNDATION_MAX_PER_LM * lm);
 
     setResult({
-      min: labourMin + waterMin + foundMin,
-      max: labourMax + waterMax + foundMax,
+      min: labourMin + waterMin + miterMin + foundMin,
+      max: labourMax + waterMax + miterMax + foundMax,
       area: areaNum,
       waterproofing, waterMin, waterMax,
+      miterCorners, miterMin, miterMax,
       foundation, foundMin, foundMax,
       foundationLength: lm,
     });
@@ -247,7 +255,7 @@ const PriceCalculator = () => {
 
   const reset = () => {
     setWorkType(""); setMaterial(""); setConcreteSubType(""); setTileSize("");
-    setLocation(""); setWaterproofing(null);
+    setLocation(""); setWaterproofing(null); setMiterCorners(null);
     setFoundation(null); setFoundationLength("");
     setSiteStatus(""); setArea("");
     setResult(null);
@@ -308,7 +316,7 @@ const PriceCalculator = () => {
               </div>
             )}
 
-            {/* Step 3: Concrete Sub-Type (outdoor + concrete only) */}
+            {/* Step 3: Concrete Sub-Type */}
             {showConcreteSubType && (
               <div className="mb-8 animate-fade-up">
                 <div className="flex items-center gap-2 mb-4">
@@ -403,7 +411,7 @@ const PriceCalculator = () => {
                   {Object.entries(tileSizeMultipliers).map(([key, val]) => (
                     <button
                       key={key}
-                      onClick={() => { setTileSize(key); setResult(null); }}
+                      onClick={() => { setTileSize(key); setMiterCorners(null); setResult(null); }}
                       className={`p-3 rounded-lg border text-left transition-all duration-200 ${
                         tileSize === key
                           ? "border-secondary bg-secondary/20"
@@ -418,11 +426,45 @@ const PriceCalculator = () => {
               </div>
             )}
 
+            {/* Mitered External Corners (tiles only) */}
+            {showMiterCorners && (
+              <div className="mb-8 animate-fade-up">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="w-7 h-7 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">4</span>
+                  <h3 className="font-display text-lg font-bold text-light">Išoriniai kampai</h3>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <button
+                    onClick={() => { setMiterCorners(true); setResult(null); }}
+                    className={`p-3 rounded-lg border text-left transition-all duration-200 ${
+                      miterCorners === true
+                        ? "border-secondary bg-secondary/20"
+                        : "border-secondary/20 bg-primary/40 hover:border-secondary/40"
+                    }`}
+                  >
+                    <span className={`text-sm font-semibold block ${miterCorners === true ? "text-secondary" : "text-light"}`}>Taip — Kampai 45° užpildyti epoksidu</span>
+                    <span className="text-xs text-light/50 mt-0.5 block">Prideda €{MITER_MIN}–€{MITER_MAX} prie bendros sumos</span>
+                  </button>
+                  <button
+                    onClick={() => { setMiterCorners(false); setResult(null); }}
+                    className={`p-3 rounded-lg border text-left transition-all duration-200 ${
+                      miterCorners === false
+                        ? "border-secondary bg-secondary/20"
+                        : "border-secondary/20 bg-primary/40 hover:border-secondary/40"
+                    }`}
+                  >
+                    <span className={`text-sm font-semibold block ${miterCorners === false ? "text-secondary" : "text-light"}`}>Ne — standartiniai kampų profiliai</span>
+                    <span className="text-xs text-light/50 mt-0.5 block">Įprastas aliuminio ar plastikinis kampų sprendimas</span>
+                  </button>
+                </div>
+              </div>
+            )}
+
             {/* Location (not masonry) */}
             {showLocation && (
               <div className="mb-8 animate-fade-up">
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="w-7 h-7 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">{needsTileSize ? 4 : 3}</span>
+                  <span className="w-7 h-7 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">{needsTileSize ? 5 : 3}</span>
                   <h3 className="font-display text-lg font-bold text-light">Patalpos / vietos tipas</h3>
                 </div>
                 <SelectField
@@ -439,7 +481,7 @@ const PriceCalculator = () => {
             {showWaterproofing && (
               <div className="mb-8 animate-fade-up">
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="w-7 h-7 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">5</span>
+                  <span className="w-7 h-7 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">6</span>
                   <h3 className="font-display text-lg font-bold text-light">Hidroizoliacija</h3>
                 </div>
                 <div className="flex flex-col gap-2">
@@ -474,7 +516,7 @@ const PriceCalculator = () => {
               <div className="mb-8 animate-fade-up">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="w-7 h-7 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">
-                    {needsWaterproofing ? 6 : needsTileSize ? 5 : 4}
+                    {needsWaterproofing ? 7 : needsTileSize ? 6 : 4}
                   </span>
                   <h3 className="font-display text-lg font-bold text-light">Statybvietės būklė</h3>
                 </div>
@@ -502,7 +544,7 @@ const PriceCalculator = () => {
               <div className="mb-8 animate-fade-up">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="w-7 h-7 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">
-                    {isConcrete ? 4 : isMasonry ? 4 : needsWaterproofing ? 7 : needsTileSize ? 6 : 5}
+                    {isConcrete ? 4 : isMasonry ? 4 : needsWaterproofing ? 8 : needsTileSize ? 7 : 5}
                   </span>
                   <h3 className="font-display text-lg font-bold text-light">
                     {isConcrete && concreteUsesLm ? "Ilgis" : "Plotas"}
@@ -556,7 +598,7 @@ const PriceCalculator = () => {
                     {result.concreteLabel ? ` · ${result.concreteLabel} (klojiniai įskaičiuoti)` : ""}
                   </p>
 
-                  {(result.waterproofing || result.foundation) && (
+                  {(result.waterproofing || result.miterCorners || result.foundation) && (
                     <div className="bg-secondary/10 border border-secondary/20 rounded-xl p-3 mb-4 text-left">
                       <p className="text-secondary text-xs font-semibold tracking-wide uppercase mb-2">Įskaičiuota</p>
                       {result.foundation && (
@@ -565,8 +607,13 @@ const PriceCalculator = () => {
                         </p>
                       )}
                       {result.waterproofing && (
-                        <p className="text-light/70 text-xs">
+                        <p className="text-light/70 text-xs mb-1">
                           Hidroizoliacija: €{result.waterMin} – €{result.waterMax}
+                        </p>
+                      )}
+                      {result.miterCorners && (
+                        <p className="text-light/70 text-xs">
+                          Glifuoti kampai su epoksidu: €{result.miterMin} – €{result.miterMax}
                         </p>
                       )}
                     </div>
@@ -601,6 +648,7 @@ const PriceCalculator = () => {
                           "Medžiaga: " + materialLabel,
                           concreteLabel   ? "Betonavimo tipas: " + concreteLabel : null,
                           tileSizeLabel   ? "Plytelių dydis: " + tileSizeLabel : null,
+                          miterCorners !== null ? "Glifuoti išoriniai kampai: " + (miterCorners ? "Taip" : "Ne") : null,
                           location        ? "Vieta: " + location : null,
                           waterproofing !== null ? "Hidroizoliacija: " + (waterproofing ? "Taip" : "Ne") : null,
                           siteStatusLabel ? "Statybvietės būklė: " + siteStatusLabel : null,
