@@ -28,7 +28,7 @@ const services = [
   { 
     icon: Blocks, 
     title: "Vonios remontas", 
-    description: "Pilna vonios kambario renovacija – nuo pradžios iki pabaigos..",
+    description: "Pilna vonios kambario renovacija – nuo pradžios iki pabaigos.",
     features: ["Hidroizoliacija", "Plytelių klojimas", "Profesionali apdaila"]
   },
   { 
