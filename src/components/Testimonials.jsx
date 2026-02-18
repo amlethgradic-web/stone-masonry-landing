@@ -10,7 +10,7 @@ const testimonials = [
   },
   {
     name: "Rita Vaičiulienė",
-    role: "Atlikta paslauga: 2025-07",
+    role: "Atlikta paslauga: Akmens atraminė siena, 2025-07",
     text: "Dirba labai tvarkingai. Siūlo sprendimus. Esam patenkinti darbo kokybe ir kaina.",
     rating: 5,
     image: "https://api.dicebear.com/9.x/avataaars/svg?seed=Derek"

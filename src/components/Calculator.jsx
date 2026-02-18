@@ -232,8 +232,8 @@ const PriceCalculator = () => {
     }
 
     const isStairs = workType === "tiles" && location === "Laiptai";
-    const stairsMin = isStairs ? 1.3 : 1.0;
-    const stairsMax = isStairs ? 1.8 : 1.0;
+    const stairsMin = isStairs ? 1.5 : 1.0;
+    const stairsMax = isStairs ? 2.0 : 1.0;
 
     const labourMin = Math.round(baseMin * statusMin * sizeMin * stairsMin * areaNum);
     const labourMax = Math.round(baseMax * statusMax * sizeMax * stairsMax * areaNum);
