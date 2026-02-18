@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,17 @@ const Contact = () => {
     service: "",
     message: ""
   });
+  const [autoFilled, setAutoFilled] = useState(false);
+
+  useEffect(() => {
+    const handler = (e) => {
+      setFormData(prev => ({ ...prev, message: e.detail.message }));
+      setAutoFilled(true);
+      setTimeout(() => setAutoFilled(false), 4000);
+    };
+    window.addEventListener("calculatorSummary", handler);
+    return () => window.removeEventListener("calculatorSummary", handler);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -112,10 +123,18 @@ const Contact = () => {
                 <option value="fireplaces">Plytelių klijavimas</option>
                 <option value="stone-veneer">Individualūs akmens ar plytelių projektai</option>
                 <option value="patios">Terasų ir takelių įrengimas</option>
-                <option value="foundation">Pamatų darbai</option>
+                <option value="foundation">Akmens mūro darbai</option>
                 <option value="restoration">Restauravimas</option>
         
               </select>
+              {autoFilled && (
+                <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary/20 border border-secondary/40 text-secondary text-sm font-medium">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Skaičiuoklės duomenys automatiškai įkelti į žinutę
+                </div>
+              )}
               <textarea 
                 placeholder="Papasakokite apie savo projektą..." 
                 rows={4} 

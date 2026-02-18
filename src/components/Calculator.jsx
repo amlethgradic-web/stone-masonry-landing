@@ -587,6 +587,36 @@ const PriceCalculator = () => {
                     </button>
                     <a
                       href="#contact"
+                      onClick={() => {
+                        const workTypeLabel = workTypes.find(w => w.id === workType)?.label || workType;
+                        const materialLabel = materialTypes[workType]?.find(m => m.id === material)?.label || material;
+                        const concreteLabel = concreteSubTypes.find(c => c.id === concreteSubType)?.label || "";
+                        const tileSizeLabel = tileSizeMultipliers[tileSize]?.label || "";
+                        const siteStatusLabel = siteStatusMultipliers[siteStatus]?.label || "";
+                        const unit = isConcrete && concreteUsesLm ? "lm" : "m²";
+
+                        const rawLines = [
+                          "--- Skaičiuoklės duomenys ---",
+                          "Darbų tipas: " + workTypeLabel,
+                          "Medžiaga: " + materialLabel,
+                          concreteLabel   ? "Betonavimo tipas: " + concreteLabel : null,
+                          tileSizeLabel   ? "Plytelių dydis: " + tileSizeLabel : null,
+                          location        ? "Vieta: " + location : null,
+                          waterproofing !== null ? "Hidroizoliacija: " + (waterproofing ? "Taip" : "Ne") : null,
+                          siteStatusLabel ? "Statybvietės būklė: " + siteStatusLabel : null,
+                          foundation === true  ? "Pamatas: Reikia iškasti (" + foundationLength + " lm)" :
+                          foundation === false ? "Pamatas: Jau yra" : null,
+                          (isConcrete && concreteUsesLm ? "Ilgis: " : "Plotas: ") + area + " " + unit,
+                          "Apytikslė kaina: €" + result.min.toLocaleString() + " – €" + result.max.toLocaleString(),
+                          "",
+                          "Papildoma informacija:",
+                        ];
+                        const lines = rawLines.filter(l => l !== null);
+
+                        window.dispatchEvent(new CustomEvent("calculatorSummary", {
+                          detail: { message: lines.join("\n") }
+                        }));
+                      }}
                       className="flex-1 py-3 bg-secondary text-primary rounded-xl hover:bg-secondary/90 transition-all duration-200 font-bold text-sm text-center"
                     >
                       Gauti tikslią kainą
