@@ -28,8 +28,8 @@ const services = [
   { 
     icon: Blocks, 
     title: "Vonios remontas", 
-    description: "Tvirti akmens pamatai ir konstrukcinis mūras ilgalaikiam stabilumui.",
-    features: ["Apkrovų pernešimas", "Sertifikuotas darbas", "Ilgaamžis"]
+    description: "Pilna vonios kambario renovacija – nuo pradžios iki pabaigos..",
+    features: ["Hidroizoliacija", "Plytelių klojimas", "Profesionali apdaila"]
   },
   { 
     icon: Wrench, 
