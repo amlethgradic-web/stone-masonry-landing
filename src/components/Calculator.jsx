@@ -10,8 +10,8 @@ const workTypes = [
 
 const materialTypes = {
   masonry: [
-    { id: "natural", label: "Natūralus akmuo" },
-    { id: "brick", label: "Plyta" },
+    { id: "cut_stone", label: "Tašytas akmuo" },
+    { id: "naturally_shaped", label: "Natūralios formos akmuo" },
   ],
   tiles: [
     { id: "ceramic", label: "Keraminės plytelės" },
@@ -22,6 +22,7 @@ const materialTypes = {
   restoration: [
     { id: "stone", label: "Akmens restauravimas" },
     { id: "tiles", label: "Plytelių restauravimas" },
+    { id: "concrete", label: "Betono restauravimas" },
   ],
   outdoor: [
     { id: "floor", label: "Akmens grindys" },
@@ -31,7 +32,7 @@ const materialTypes = {
 };
 
 const locationTypes = {
-  tiles: ["Vonios kambarys", "Virtuvė", "Grindys", "Sienos"],
+  tiles: ["Vonios kambarys", "Virtuvė", "Grindys", "Sienos", "Laiptai"],
   restoration: ["Istorinis pastatas", "Privatus namas", "Kita"],
   outdoor: ["Sodas", "Privažiavimas", "Kita"],
 };
@@ -43,9 +44,9 @@ const tileSizeMultipliers = {
 };
 
 const basePrices = {
-  masonry: { natural: [50, 75], brick: [30, 45] },
+  masonry: { cut_stone: [60, 85], naturally_shaped: [85, 150] },
   tiles: { ceramic: [25, 40], porcelain: [25, 45], natural_stone: [45, 60], mosaic: [45, 75] },
-  restoration: { stone: [55, 80], tiles: [35, 55] },
+  restoration: { stone: [55, 80], tiles: [35, 55], concrete: [40, 65] },
   outdoor: { floor: [40, 65], clinker: [25, 45], concrete: [0, 0] },
 };
 
@@ -67,32 +68,32 @@ const concreteSubTypes = [
     label: "Betoninis grindinys",
     description: "Plokštė ant grunto — įeina klojiniai, betonavimas ir apdaila",
     unit: "m²",
-    min: 55,
-    max: 85,
+    min: 110,
+    max: 160,
   },
   {
     id: "stairs",
     label: "Betoniniai laiptai",
     description: "Monolitiniai laiptai — įeina klojiniai ir paviršiaus apdaila",
     unit: "m²",
-    min: 110,
-    max: 160,
+    min: 150,
+    max: 250,
   },
   {
     id: "retaining_wall",
     label: "Atraminė siena",
     description: "Armuota atraminė siena — įeina klojiniai abiejose pusėse",
     unit: "m²",
-    min: 90,
-    max: 130,
+    min: 150,
+    max: 300,
   },
   {
     id: "foundation",
     label: "Pamatas",
     description: "Juostinis arba plokštelinis pamatas — įeina iškasimas, klojiniai ir betonavimas",
     unit: "lm",
-    min: 120,
-    max: 220,
+    min: 160,
+    max: 250,
   },
 ];
 
@@ -155,6 +156,7 @@ const PriceCalculator = () => {
   const handleLocationChange = (val) => {
     setLocation(val);
     setWaterproofing(null);
+    setMiterCorners(null);
     setResult(null);
   };
 
@@ -174,8 +176,8 @@ const PriceCalculator = () => {
   const showConcreteSubType = isConcrete && material;
   const showFoundation = needsFoundation && material;
   const showTileSize = needsTileSize && material;
-  const showMiterCorners = needsMiterCorners && tileSize;
-  const showLocation = needsLocation && workType && material && (!needsTileSize || tileSize) && (!needsMiterCorners || miterCorners !== null);
+  const showLocation = needsLocation && workType && material && (!needsTileSize || tileSize);
+  const showMiterCorners = needsMiterCorners && tileSize && location;
   const showWaterproofing = needsWaterproofing && location;
   const showSiteCondition = needsSiteCondition && showLocation && location && (!needsWaterproofing || waterproofing !== null);
   const showArea =
@@ -229,14 +231,19 @@ const PriceCalculator = () => {
       statusMax = siteStatusMultipliers[siteStatus].max;
     }
 
-    const labourMin = Math.round(baseMin * statusMin * sizeMin * areaNum);
-    const labourMax = Math.round(baseMax * statusMax * sizeMax * areaNum);
+    const isStairs = workType === "tiles" && location === "Laiptai";
+    const stairsMin = isStairs ? 1.3 : 1.0;
+    const stairsMax = isStairs ? 1.8 : 1.0;
+
+    const labourMin = Math.round(baseMin * statusMin * sizeMin * stairsMin * areaNum);
+    const labourMax = Math.round(baseMax * statusMax * sizeMax * stairsMax * areaNum);
 
     const waterMin = waterproofing ? WATERPROOFING_MIN : 0;
     const waterMax = waterproofing ? WATERPROOFING_MAX : 0;
 
-    const miterMin = miterCorners ? MITER_MIN : 0;
-    const miterMax = miterCorners ? MITER_MAX : 0;
+    const miterMultiplier = (miterCorners && isStairs) ? 2.5 : 1.0;
+    const miterMin = miterCorners ? Math.round(MITER_MIN * miterMultiplier) : 0;
+    const miterMax = miterCorners ? Math.round(MITER_MAX * miterMultiplier) : 0;
 
     const lm = foundation ? Number(foundationLength) : 0;
     const foundMin = Math.round(FOUNDATION_MIN_PER_LM * lm);
@@ -426,11 +433,28 @@ const PriceCalculator = () => {
               </div>
             )}
 
+            {/* Location (not masonry) */}
+            {showLocation && (
+              <div className="mb-8 animate-fade-up">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="w-7 h-7 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">{needsTileSize ? 4 : 3}</span>
+                  <h3 className="font-display text-lg font-bold text-light">Patalpos / vietos tipas</h3>
+                </div>
+                <SelectField
+                  label="Vieta"
+                  value={location}
+                  onChange={handleLocationChange}
+                  options={locationTypes[workType].map((l) => ({ id: l, label: l }))}
+                  placeholder="Pasirinkite vietą..."
+                />
+              </div>
+            )}
+
             {/* Mitered External Corners (tiles only) */}
             {showMiterCorners && (
               <div className="mb-8 animate-fade-up">
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="w-7 h-7 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">4</span>
+                  <span className="w-7 h-7 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">5</span>
                   <h3 className="font-display text-lg font-bold text-light">Išoriniai kampai</h3>
                 </div>
                 <div className="flex flex-col gap-2">
@@ -443,7 +467,7 @@ const PriceCalculator = () => {
                     }`}
                   >
                     <span className={`text-sm font-semibold block ${miterCorners === true ? "text-secondary" : "text-light"}`}>Taip — Kampai 45° užpildyti epoksidu</span>
-                    <span className="text-xs text-light/50 mt-0.5 block">Prideda €{MITER_MIN}–€{MITER_MAX} prie bendros sumos</span>
+                    <span className="text-xs text-light/50 mt-0.5 block">Prideda €{location === "Laiptai" ? Math.round(MITER_MIN * 2.5) : MITER_MIN}–€{location === "Laiptai" ? Math.round(MITER_MAX * 2.5) : MITER_MAX} prie bendros sumos</span>
                   </button>
                   <button
                     onClick={() => { setMiterCorners(false); setResult(null); }}
@@ -457,23 +481,6 @@ const PriceCalculator = () => {
                     <span className="text-xs text-light/50 mt-0.5 block">Įprastas aliuminio ar plastikinis kampų sprendimas</span>
                   </button>
                 </div>
-              </div>
-            )}
-
-            {/* Location (not masonry) */}
-            {showLocation && (
-              <div className="mb-8 animate-fade-up">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-7 h-7 rounded-full bg-secondary text-primary text-xs font-bold flex items-center justify-center flex-shrink-0">{needsTileSize ? 5 : 3}</span>
-                  <h3 className="font-display text-lg font-bold text-light">Patalpos / vietos tipas</h3>
-                </div>
-                <SelectField
-                  label="Vieta"
-                  value={location}
-                  onChange={handleLocationChange}
-                  options={locationTypes[workType].map((l) => ({ id: l, label: l }))}
-                  placeholder="Pasirinkite vietą..."
-                />
               </div>
             )}
 
