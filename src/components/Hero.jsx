@@ -2,7 +2,7 @@ import { Star, CheckCircle, Calculator } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-20">
       {/* Background with stone wall image and brown overlay */}
       <div className="absolute inset-0">
         {/* Stone wall image */}
