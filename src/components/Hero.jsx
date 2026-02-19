@@ -9,7 +9,7 @@ const Hero = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/peakpx.jpg')`,
+            backgroundImage: `url('/a-dry-stone-retaining-wall-v0-q0xxm1wctogf1.webp')`,
           }}
         />
         {/* Brown  overlay */}
