@@ -163,17 +163,17 @@ const Gallery = () => {
               <GroupedCard
                 images={hydroImages}
                 title="Hidroizoliacija"
-                category="Restauravimas"
+                category="Interjeras"
               />
               <GroupedCard
                 images={showerRepairImages}
                 title="Dušo remontas"
-                category="Restauravimas"
+                category="Remontas"
               />
               <GroupedCard
                 images={bathroomRepairImages}
                 title="Vonios plytelių remontas"
-                category="Restauravimas"
+                category="Remontas"
               />
             </>
           )}

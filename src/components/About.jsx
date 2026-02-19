@@ -2,7 +2,7 @@ const About = () => {
   const stats = [
     { number: "9+", label: "Metų Patirtis" },
     { number: "250+", label: "Įvykdytų Projektų" },
-    { number: "100%", label: "Dėmesio jums – Mes niekada neimamės kelių darbų vienu metu." },
+    { number: "100%", label: "Dėmesio jums – Mes niekada neimam kelių darbų vienu metu." },
     { number: "4.9★", label: "Klientų Įvertinimas" },
   ];
 
