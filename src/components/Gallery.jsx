@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 const bathroomRepairImagessecond = [
-  "/IMG_3295.jpg",
+  "/IMG_0295.jpg",
   "/IMG_0313.jpg",
   "/IMG_0330.jpg",
   "/IMG_0337.jpg",
