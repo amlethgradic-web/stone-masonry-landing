@@ -1,5 +1,19 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
+const curvedNiche = [
+  "/IMG_1610.jpg",
+  "/IMG_1612.jpg",
+  "/IMG_1606.jpg",
+];
+
+const miteredCorner = [
+  "/IMG_1600.jpg",
+  "/IMG_1601.jpg",
+  "/IMG_1602.jpg",
+  "/IMG_1603.jpg",
+];
+
+
 const bathroomRepairImagessecond = [
   "/IMG_0295.jpg",
   "/IMG_0313.jpg",
@@ -35,7 +49,7 @@ const projects = [
   { image: "/IMG_0375.jpg", title: "Akmens krantas", category: "Lauko darbai" },
   { image: "/IMG_0917.jpg", title: "Akmens atraminė siena", category: "Lauko darbai" },
   { image: "/IMG_0980.jpg", title: "Virtuvės plytelės", category: "Interjeras" },
-  { image: "/IMG_0292.jpg", title: "Tvoros atnaujinimas", category: "Restauravimas" },
+  { image: "/IMG_1610.jpg", title: "Virtuvės plytelės", category: "Interjeras" },
   { image: "/IMG_8725.jpg", title: "Juodosios granito plytelės", category: "Interjeras" },
   { image: "/IMG_2151.JPEG", title: "Vonios kambarys", category: "Interjeras" },
   { image: "/IMG_2002.jpg", title: "Vonios kambarys su LED apšvietimu", category: "Interjeras" },
@@ -56,10 +70,13 @@ const projects = [
   { image: "/IMG_6135.JPEG", title: "Baltos dušo plytelės", category: "Interjeras" },
   { image: "/IMG_8778.JPEG", title: "Terrazzo grindys", category: "Interjeras" },
   { image: "/IMG_8178.JPEG", title: "Smėlio spalvos dušas", category: "Interjeras" },
+  { image: "/IMG_0292.jpg", title: "Tvoros atnaujinimas", category: "Restauravimas" },
 ];
 
 // Multi-photo projects shown after "Rodyti daugiau"
 const groups = [
+  { images: curvedNiche, title: "Išlenkta niša", category: "Interjeras" },
+  { images: miteredNiche, title: "Kampai 45° užpildyti epoksidu", category: "Interjeras" },
   { images: hydroImages, title: "Hidroizoliacija", category: "Interjeras" },
   { images: showerRepairImages, title: "Dušo remontas", category: "Remontas" },
   { images: bathroomRepairImages, title: "Vonios plytelių remontas", category: "Remontas" },
