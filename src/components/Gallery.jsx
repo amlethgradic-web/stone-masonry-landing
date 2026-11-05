@@ -40,11 +40,12 @@ const projects = [
   { image: "/IMG_0292.jpg", title: "Tvoros atnaujinimas", category: "Restauravimas" },
   { image: "/IMG_8725.jpg", title: "Juodosios granito plytelės", category: "Interjeras" },
   { image: "/IMG_2151.JPEG", title: "Vonios kambarys", category: "Interjeras" },
-  { image: "/IMG_0894.jpg", title: "Vonios sienos plytelės", category: "Interjeras" },
+ { image: "/IMG_2002.jpg", title: "Vonios kambarys su LED apšvietimu", category: "Interjeras" },
   { image: "/IMG_6927.jpg", title: "Moderni virtuvė", category: "Interjeras" },
   { image: "/IMG_6441.jpg", title: "Šešiakampės grindys", category: "Interjeras" },
 
   // New images — visible after "Rodyti daugiau"
+  { image: "/IMG_0894.jpg", title: "Vonios sienos plytelės", category: "Interjeras" },
   { image: "/IMG_0206.JPEG", title: "Pilkosios marmuro plytelės", category: "Interjeras" },
  { image: "/bathroom-tiles.jpg", title: "Kampai 45° užpildyti epoksidu", category: "Interjeras" },
   { image: "/IMG_0658.JPEG", title: "Metro plytelės", category: "Interjeras" },
@@ -186,7 +187,7 @@ const Gallery = () => {
               />
               <GroupedCard
                 images={bathroomRepairImagessecond}
-                title="Vonios plytelių remontas"
+                title="Dušo remontas"
                 category="Remontas"
               />
             </>
