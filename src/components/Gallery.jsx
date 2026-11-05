@@ -1,5 +1,14 @@
 import { useState } from "react";
 
+const bathroomRepairImagessecond = [
+  "/IMG_3295.JPEG",
+  "/IMG_0313.JPEG",
+  "/IMG_0330.JPEG",
+  "/IMG_0337.JPEG",
+  "/IMG_0338.JPEG",
+
+];
+
 const bathroomRepairImages = [
   "/IMG_9616.JPEG",
   "/IMG_9618.JPEG",
@@ -172,6 +181,11 @@ const Gallery = () => {
               />
               <GroupedCard
                 images={bathroomRepairImages}
+                title="Vonios plytelių remontas"
+                category="Remontas"
+              />
+              <GroupedCard
+                images={bathroomRepairImagessecond}
                 title="Vonios plytelių remontas"
                 category="Remontas"
               />
