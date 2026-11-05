@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 const bathroomRepairImagessecond = [
-  "/IMG_3295.JPEG",
-  "/IMG_0313.JPEG",
-  "/IMG_0330.JPEG",
-  "/IMG_0337.JPEG",
-  "/IMG_0338.JPEG",
+  "/IMG_3295.jpg",
+  "/IMG_0313.jpg",
+  "/IMG_0330.jpg",
+  "/IMG_0337.jpg",
+  "/IMG_0338.jpg",
 ];
 
 const bathroomRepairImages = [
