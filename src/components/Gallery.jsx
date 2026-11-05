@@ -6,7 +6,6 @@ const bathroomRepairImagessecond = [
   "/IMG_0330.JPEG",
   "/IMG_0337.JPEG",
   "/IMG_0338.JPEG",
-
 ];
 
 const bathroomRepairImages = [
