@@ -29,7 +29,6 @@ const showerRepairImages = [
 const hydroImages = [
   "/IMG_0187.JPEG",
   "/IMG_0186.JPEG",
-
 ];
 
 const projects = [
@@ -45,9 +44,15 @@ const projects = [
   { image: "/IMG_6441.jpg", title: "Šešiakampės grindys", category: "Interjeras" },
 
   // New images — visible after "Rodyti daugiau"
+  { image: "/IMG_2001.jpg", title: "Vonios kambarys su LED apšvietimu", category: "Interjeras" },
   { image: "/IMG_0894.jpg", title: "Vonios sienos plytelės", category: "Interjeras" },
+  { image: "/IMG_0241.jpg", title: "Vonios kambario niša su LED apšvietimu", category: "Interjeras" },
+  { image: "/IMG_0237.jpg", title: "Vonios kambarys su LED apšvietimu", category: "Interjeras" },
   { image: "/IMG_0206.JPEG", title: "Pilkosios marmuro plytelės", category: "Interjeras" },
  { image: "/bathroom-tiles.jpg", title: "Kampai 45° užpildyti epoksidu", category: "Interjeras" },
+  { image: "/IMG_0016.jpg", title: "Didelės akmens plytelės", category: "Interjeras" },
+  { image: "/IMG_0017.jpg", title: "Didelės akmens plytelės", category: "Interjeras" },
+{ image: "/IMG_0015.jpg", title: "Didelės akmens plytelės", category: "Interjeras" },
   { image: "/IMG_0658.JPEG", title: "Metro plytelės", category: "Interjeras" },
   { image: "/IMG_6135.JPEG", title: "Baltos dušo plytelės", category: "Interjeras" },
   { image: "/IMG_8778.JPEG", title: "Terrazzo grindys", category: "Interjeras" },
@@ -187,7 +192,7 @@ const Gallery = () => {
               />
               <GroupedCard
                 images={bathroomRepairImagessecond}
-                title="Dušo remontas"
+                title="Dušo grindų atnaujinimas su paslėptu nuoteku"
                 category="Remontas"
               />
             </>
