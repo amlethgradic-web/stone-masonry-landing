@@ -76,7 +76,7 @@ const projects = [
 // Multi-photo projects shown after "Rodyti daugiau"
 const groups = [
   { images: curvedNiche, title: "Išlenkta niša", category: "Interjeras" },
-  { images: miteredNiche, title: "Kampai 45° užpildyti epoksidu", category: "Interjeras" },
+  { images: miteredCorner, title: "Kampai 45° užpildyti epoksidu", category: "Interjeras" },
   { images: hydroImages, title: "Hidroizoliacija", category: "Interjeras" },
   { images: showerRepairImages, title: "Dušo remontas", category: "Remontas" },
   { images: bathroomRepairImages, title: "Vonios plytelių remontas", category: "Remontas" },
